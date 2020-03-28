@@ -173,6 +173,7 @@ td.category {
 	display: none;
 	-ms-align-items: center;
 	align-items: center;
+	overflow: hidden;
 }
 
 .modal > .exit {
