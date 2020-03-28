@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+
+	<table>
+		<thead></thead>
+		<tbody></tbody>
+	</table>
+
+	<style>
+		table {
+			width: 50%;
+		}
+
+		td {
+			width: 10%;
+			text-align: center;
+		}
+	</style>
+
+
+	<script>
+		var tableData = {
+			'row1': {
+				'1': {
+					'col1': null,
+					'col2': 12,
+					'col3': 13,
+				},
+				'2': {
+					'col4': 14,
+					'col5': null,
+					'col6': 16,
+				},
+				'prop': {
+					'name': 'row1',
+					'color': 'red',
+				},
+			},
+			'row2': {
+				'1': {
+					'col1': null,
+					'col2': 22,
+					'col3': 23,
+				},
+				'2': {
+					'col4': 24,
+					'col5': null,
+					'col6': 26,
+				},
+				'prop': {
+					'name': 'row2',
+					'color': 'blue',
+				}
+			},
+			'row3': {
+				'1': {
+					'col1': null,
+					'col2': 32,
+					'col3': 33,
+				},
+				'2': {
+					'col4': 34,
+					'col5': null,
+					'col6': 36,
+				},
+				'prop': {
+					'name': 'row3',
+					'color': 'green',
+				}
+			},
+			'row4': {
+				'1': {
+					'col1': null,
+					'col2': 42,
+					'col3': 43,
+				},
+				'2': {
+					'col4': 44,
+					'col5': null,
+					'col6': 46,
+				},
+				'prop': {
+					'name': 'row4',
+					'color': 'yellow',
+				},
+			},
+			'row5': {
+				'name': 'row5',
+				'1': {
+					'col1': null,
+					'col2': 52,
+					'col3': 53,
+				},
+				'2': {
+					'col4': 54,
+					'col5': null,
+					'col6': 56,
+				},
+				'prop': {
+					'name': 'row5',
+					'color': 'black',
+				},
+			}
+		}
+
+		console.log(tableData)
+
+
+		var table = document.getElementsByTagName('table')[0]
+		var headers = Object.keys(tableData['row1']).splice(0, Object.keys(tableData['row1']).length - 1)
+
+		var thead = document.getElementsByTagName('thead')[0]
+		var head = document.createElement('tr')
+		head.insertAdjacentHTML('afterBegin', '<td></td>')
+
+		for (i in headers) {
+			head.insertAdjacentHTML('beforeEnd', '<td>' + headers[i] + '</td>')
+		}
+
+		thead.appendChild(head)
+
+
+
+		var tbody = document.getElementsByTagName('tbody')[0]
+
+		for (row in tableData) {
+			var tr = document.createElement('tr')
+
+			var tdName = document.createElement('td')
+			tdName.innerText = tableData[row]['prop']['name']
+			tdName.style.color = tableData[row]['prop']['color']
+
+			tr.insertAdjacentHTML('afterBegin', tdName.outerHTML)
+
+			tbody.insertAdjacentHTML('beforeEnd', tr.outerHTML)
+		}
+
+
+
+		
+
+
+
+
+	</script>
+	
+</body>
+</html>

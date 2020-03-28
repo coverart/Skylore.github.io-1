@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+
+	<script src="https://kit.fontawesome.com/91b0d914ad.js" crossorigin="anonymous"></script>
+
+	<!-- Resources -->
+	<script src="https://www.amcharts.com/lib/4/core.js"></script>
+	<script src="https://www.amcharts.com/lib/4/charts.js"></script>
+	<script src="https://www.amcharts.com/lib/4/themes/animated.js"></script>
+
+	<script src="js/index.js"></script>
+
+	<script src="js/mobileSelect.js"></script>
+	<link rel="stylesheet" href="css/mobileSelect.css">
+
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+
+
+	<div class="header">
+		<img src="pictures/drc-2020-en-red.png" alt="">
+		<h2 class="category-name"></h2>
+	</div>
+
+
+	
+
+	<div class="chart-container-bg">
+		<div class="chart-container">
+			<div id="chartdiv"></div>
+		</div>
+		<i class="fas fa-angle-up collapse"></i>
+	</div>
+
+
+
+	<div class="modal">
+		<i class="fas fa-times exit"></i>
+		<div class="modal-table-container">
+
+
+			<table class="table-modal" id="table-modal">
+				<thead></thead>
+				<tbody></tbody>
+			</table>
+
+
+			<!-- <table class="table-modal">
+				<th>
+					<td class="table-modal-cell">J</td>
+					<td class="table-modal-cell">F</td>
+					<td class="table-modal-cell">M</td>
+					<td class="table-modal-cell">A</td>
+					<td class="table-modal-cell">M</td>
+					<td class="table-modal-cell">J</td>
+					<td class="table-modal-cell">J</td>
+					<td class="table-modal-cell">A</td>
+					<td class="table-modal-cell">S</td>
+					<td class="table-modal-cell">O</td>
+					<td class="table-modal-cell">N</td>
+					<td class="table-modal-cell">D</td>
+				</th>
+				<tr>
+					<td class="table-modal-cell modal-category" style="color: #00997F">Level of clearance of mines and unexploded ordnance</td>
+					<td class="table-modal-cell">4</td>
+					<td class="table-modal-cell">4</td>
+					<td class="table-modal-cell">4</td>
+					<td class="table-modal-cell">4</td>
+					<td class="table-modal-cell">4</td>
+					<td class="table-modal-cell">4</td>
+					<td class="table-modal-cell">4</td>
+					<td class="table-modal-cell">4</td>
+					<td class="table-modal-cell">4</td>
+					<td class="table-modal-cell">4</td>
+					<td class="table-modal-cell">4</td>
+					<td class="table-modal-cell">4</td>
+				</tr>
+				<tr>
+					<td class="table-modal-cell modal-category" style="color: #709608">No movement restrictions for IDPs</td>
+					<td class="table-modal-cell">4</td>
+					<td class="table-modal-cell">4</td>
+					<td class="table-modal-cell">4</td>
+					<td class="table-modal-cell">4</td>
+					<td class="table-modal-cell">4</td>
+					<td class="table-modal-cell">4</td>
+					<td class="table-modal-cell">4</td>
+					<td class="table-modal-cell">4</td>
+					<td class="table-modal-cell">4</td>
+					<td class="table-modal-cell">4</td>
+					<td class="table-modal-cell">4</td>
+					<td class="table-modal-cell">4</td>
+				</tr>
+				<tr>
+					<td class="table-modal-cell modal-category" style="color: #3A2E72">Reduction of checkpoints or other special security measures</td>
+					<td class="table-modal-cell">4</td>
+					<td class="table-modal-cell">4</td>
+					<td class="table-modal-cell">4</td>
+					<td class="table-modal-cell">4</td>
+					<td class="table-modal-cell">4</td>
+					<td class="table-modal-cell">4</td>
+					<td class="table-modal-cell">4</td>
+					<td class="table-modal-cell">4</td>
+					<td class="table-modal-cell">4</td>
+					<td class="table-modal-cell">4</td>
+					<td class="table-modal-cell">4</td>
+					<td class="table-modal-cell">4</td>
+				</tr>
+			</table> -->
+		</div>
+		<div class="modal-chart-container">
+			<div id="chartdiv1"></div>
+		</div>
+	</div>
+	
+
+	<div class="table-container">
+		<i class="fas fa-angle-right table-expand"></i>
+
+
+		<table class="table-medium" id="table-medium">
+			<thead></thead>
+			<tbody></tbody>
+		</table>
+
+<!-- 		<div class="legal-devs">
+			<ul>
+				<li>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</li>
+				<li>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</li>
+				<li>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</li>
+				<li>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</li>
+				<li>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</li>
+			</ul>
+		</div>
+	 -->
+	</div>
+</body>
+</html>
