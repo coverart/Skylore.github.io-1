@@ -1292,13 +1292,22 @@ am4core.ready(function() {
 		var categoryModal = document.getElementsByClassName('category-table-medium');
 		var modal = document.getElementsByClassName('modal')[0]
 
+		var x = 0;
+		var y = 0;
+
 		categoryModal.forEach((item) => {
 
 			item.addEventListener('click', (ev) => {
 
 				document.getElementsByClassName('category-name')[0].innerText = ev.target.innerText
 				modal.style.display = 'block'
-				loadTableData(modalData, true, 'table-modal')
+				loadTableData(modalData, true, 'table-modal');
+
+				x = window.pageXOffset
+				y = window.pageYOffset
+
+				window.scrollTo(0, 0)
+				document.getElementsByTagName('body')[0].style.overflow = 'hidden'
 
 
 			})
@@ -1310,6 +1319,9 @@ am4core.ready(function() {
 			modalExit.addEventListener('click', () => {
 				modal.style.display = 'none'
 				document.getElementsByClassName('category-name')[0].innerText = null
+
+				window.scrollTo(x, y)
+				document.getElementsByTagName('body')[0].style.overflow = 'visible'
 		})
 
 	}
