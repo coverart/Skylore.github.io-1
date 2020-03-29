@@ -36,7 +36,7 @@
 
 #chartdiv1 {
 	width: 100%;
-	height: 60vh;
+	height: 50vh;
 }
 
 .chart-container {
@@ -103,6 +103,7 @@
 	top: 50%;
 	font-size: 1.2rem;
 	/*display: none;*/
+	transition: all 0.3s ease;
 	
 }
 
@@ -189,12 +190,13 @@ td.category {
 }
 
 .modal-chart-container {
-	height: 60vh;
-	width: 50%;
+	height: 50vh;
+	width: 96%;
 	position: absolute;
 	right: 2.5%;
 	/*background-color: lightgrey;*/
-	top: calc((100vh - 106px - 60vh) / 2);
+	/*top: calc((100vh - 106px - 60vh) / 2);*/
+	bottom: 150px;
 }
 
 .table-modal {
@@ -203,18 +205,20 @@ td.category {
 }
 
 .modal-table-container {
-	width: 45%;
+	/*width: 45%;*/
+	width: 95%;
 	height: 50vh;
 	position: absolute;
 	left: 2.5%;
-	top: calc((100vh - 106px - 50vh) / 2);
-	display: -webkit-flex;
+	top: 30px;
+	/*top: calc((100vh - 106px - 50vh) / 2);*/
+/*	display: -webkit-flex;
 	display: -moz-flex;
 	display: -ms-flex;
 	display: -o-flex;
 	display: flex;
 	-ms-align-items: center;
-	align-items: center;
+	align-items: center;*/
 }
 
 td.table-modal-cell {
