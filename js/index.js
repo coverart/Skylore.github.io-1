@@ -63,253 +63,6 @@ am4core.ready(function() {
 
 
 
-
-
-	//    Small Chart
-
-	var chart = am4core.create("chartdiv1", am4charts.XYChart);
-
-	var dataset = [{
-		  "year": "1994",
-		  "cars": 1587,
-		  "motorcycles": 650,
-		  "bicycles": 121
-		}, {
-		  "year": "1995",
-		  "cars": 1567,
-		  "motorcycles": 683,
-		  "bicycles": 146
-		}, {
-		  "year": "1996",
-		  "cars": 1617,
-		  "motorcycles": 691,
-		  "bicycles": 138
-		}, {
-		  "year": "1997",
-		  "cars": 1630,
-		  "motorcycles": 642,
-		  "bicycles": 127
-		}, {
-		  "year": "1998",
-		  "cars": 1660,
-		  "motorcycles": 699,
-		  "bicycles": 105
-		}, {
-		  "year": "1999",
-		  "cars": 1683,
-		  "motorcycles": 721,
-		  "bicycles": 109
-		}, {
-		  "year": "2000",
-		  "cars": 1691,
-		  "motorcycles": 737,
-		  "bicycles": 112
-		}, {
-		  "year": "2001",
-		  "cars": 1298,
-		  "motorcycles": 680,
-		  "bicycles": 101
-		}, {
-		  "year": "2002",
-		  "cars": 1275,
-		  "motorcycles": 664,
-		  "bicycles": 97
-		}, {
-		  "year": "2003",
-		  "cars": 1246,
-		  "motorcycles": 648,
-		  "bicycles": 93
-		}, {
-		  "year": "2004",
-		  "cars": 1318,
-		  "motorcycles": 697,
-		  "bicycles": 111
-		}, {
-		  "year": "2005",
-		  "cars": 1213,
-		  "motorcycles": 633,
-		  "bicycles": 87
-		}, {
-		  "year": "2006",
-		  "cars": 1199,
-		  "motorcycles": 621,
-		  "bicycles": 79
-		}, {
-		  "year": "2007",
-		  "cars": 1110,
-		  "motorcycles": 210,
-		  "bicycles": 81
-		}, {
-		  "year": "2008",
-		  "cars": 1165,
-		  "motorcycles": 232,
-		  "bicycles": 75
-		}, {
-		  "year": "2009",
-		  "cars": 1145,
-		  "motorcycles": 219,
-		  "bicycles": 88
-		}, {
-		  "year": "2010",
-		  "cars": 1163,
-		  "motorcycles": 201,
-		  "bicycles": 82
-		}, {
-		  "year": "2011",
-		  "cars": 1180,
-		  "motorcycles": 285,
-		  "bicycles": 87
-		}, {
-		  "year": "2012",
-		  "cars": 1159,
-		  "motorcycles": 277,
-		  "bicycles": 71
-		}];
-
-	chart.data = dataset
-
-
-
-
-
-
-
-
-	chart.dateFormatter.inputDateFormat = "yyyy";
-	var dateAxis = chart.xAxes.push(new am4charts.DateAxis());
-	dateAxis.renderer.minGridDistance = 60;
-	dateAxis.startLocation = 0.5;
-	dateAxis.endLocation = 0.5;
-	dateAxis.baseInterval = {
-		timeUnit: "year",
-		count: 1
-	}
-
-	chart.zoomOutButton.background.fill = am4core.color('#d6787c')
-
-
-	var valueAxis = chart.yAxes.push(new am4charts.ValueAxis());
-	valueAxis.tooltip.disabled = true;
-
-	var series = chart.series.push(new am4charts.LineSeries());
-	series.dataFields.dateX = "year";
-	series.name = "level of clearance ...";
-	series.dataFields.valueY = "cars";
-	// series.tooltipHTML = "<img src='https://www.amcharts.com/lib/3/images/car.png' style='vertical-align:bottom; margin-right: 10px; width:28px; height:21px;'><span style='font-size:14px; color:#000000;'><b>{valueY.value}</b></span>";
-	series.tooltipText = "[#000]{valueY.value}[/]";
-	series.tooltip.background.fill = am4core.color("#FFF");
-	series.tooltip.getStrokeFromObject = true;
-	series.tooltip.background.strokeWidth = 3;
-	series.tooltip.getFillFromObject = false;
-	series.fill = am4core.color('#6F0000')
-	series.fillOpacity = 0.6;
-	series.stroke = am4core.color('white')
-	series.strokeWidth = 2;
-	series.stacked = true;
-
-	var series2 = chart.series.push(new am4charts.LineSeries());
-	series2.name = "No movement ...";
-	series2.dataFields.dateX = "year";
-	series2.dataFields.valueY = "motorcycles";
-	// series2.tooltipHTML = "<img src='https://www.amcharts.com/lib/3/images/motorcycle.png' style='vertical-align:bottom; margin-right: 10px; width:28px; height:21px;'><span style='font-size:14px; color:#000000;'><b>{valueY.value}</b></span>";
-	series2.tooltipText = "[#000]{valueY.value}[/]";
-	series2.tooltip.background.fill = am4core.color("#FFF");
-	series2.tooltip.getFillFromObject = false;
-	series2.tooltip.getStrokeFromObject = true;
-	series2.tooltip.background.strokeWidth = 3;
-	series2.sequencedInterpolation = true;
-	series2.fill = am4core.color('#AA0000')
-	series2.fillOpacity = 0.6;
-	series2.stroke = am4core.color('white')
-	series2.stacked = true;
-	series2.strokeWidth = 2;
-
-	var series3 = chart.series.push(new am4charts.LineSeries());
-	series3.name = "Reduction ...";
-	series3.dataFields.dateX = "year";
-	series3.dataFields.valueY = "bicycles";
-	// series3.tooltipHTML = "<img src='https://www.amcharts.com/lib/3/images/bicycle.png' style='vertical-align:bottom; margin-right: 10px; width:28px; height:21px;'><span style='font-size:14px; color:#000000;'><b>{valueY.value}</b></span>";
-	series3.tooltipText = "[#000]{valueY.value}[/]";
-	series3.tooltip.background.fill = am4core.color("#FFF");
-	series3.tooltip.getFillFromObject = false;
-	series3.tooltip.getStrokeFromObject = true;
-	series3.tooltip.background.strokeWidth = 3;
-	series3.sequencedInterpolation = true;
-	series3.fill = am4core.color('#FF0000')
-	series3.fillOpacity = 0.6;
-	series3.stroke = am4core.color('white')
-	series3.defaultState.transitionDuration = 1000;
-	series3.stacked = true;
-	series3.strokeWidth = 2;
-
-	chart.cursor = new am4charts.XYCursor();
-	chart.cursor.xAxis = dateAxis;
-	chart.scrollbarX = new am4core.Scrollbar();
-
-		// Add a legend
-	chart.legend = new am4charts.Legend();
-	chart.legend.position = "top";
-
-
-	// var expand = document.getElementsByClassName('expand');
-	// var chartField = document.getElementsByClassName('chart-container')[0];
-	// var chartdiv = document.getElementById('chartdiv');
-
-	// expand[0].addEventListener('click', () => {
-	// 	chartField.classList.toggle('expand-container');	
-	// 	chartdiv.classList.toggle('expand-container');
-	// })
-
-	// var indexChartDiv = document.getElementsByClassName('index-chart-container')[0];
-	// var chartdiv1 = document.getElementById('chartdiv1')
-
-	// expand[1].addEventListener('click', () => {
-	// 	indexChartDiv.classList.toggle('expand-container1')
-	// 	chartdiv1.classList.toggle('expand-container-table1');
-	// })
-
-	// var tableExpand = document.getElementsByClassName('expand-table')[0];
-	// var tableContainer = document.getElementsByClassName('table-container')[0];
-	// var table = document.getElementsByTagName('table')[0];
-
-	// tableExpand.addEventListener('click', () => {
-	// 	tableContainer.classList.toggle('expand-table-container')
-	// 	table.classList.toggle('expand-table-container')
-	// })
-
-	// var rows = document.getElementsByTagName('tr');
-
-	// for (i in rows) {
-	// 	if (i != 0 && i < 9) {
-	// 		rows[i].children[0].addEventListener('click', (ev) => {
-	// 			var text = null
-
-	// 			if (ev.target.tagName == 'P')  {
-	// 				text = ev.target.outerText
-	// 			} else if (ev.target.tagName == 'TD')  {
-	// 				text = ev.target.textContent
-	// 			} else if (ev.target.tagName == 'DIV'){
-	// 				text = ev.target.textContent
-	// 			} else {
-	// 				text = ev.target.offsetParent.textContent
-	// 			}
-
-	// 			indexChartDiv.children[0].childNodes[1].innerText = text
-
-
-	// 			for (i in dataset) {
-	// 				console.log(chart.data[i])
-	// 				dataset[i].cars = Math.floor(Math.random() * Math.floor(1600))
-	// 				dataset[i].motorcycles = Math.floor(Math.random() * Math.floor(1000))
-	// 				dataset[i].bicycles = Math.floor(Math.random() * Math.floor(200))
-	// 			}
-
-	// 			chart.data = dataset
-	// 		})
-	// 	}
-	// }
-
-
 	HTMLCollection.prototype.slice = function(start, end) {
 		var res = []
 
@@ -828,6 +581,65 @@ am4core.ready(function() {
 	 					'aug': -1
  					}
  				},
+ 				'total': {
+ 					'prop': {
+ 						'name': 'Total',
+ 						'color': '#90278F',
+ 						'icon': 'pictures/regs-icon.png'
+ 					},
+ 					'2016': {
+ 						'jan': 1,
+	 					'feb': 3,
+	 					'mar': 2,
+	 					'apr': 5,
+	 					'may': 4,
+	 					'jun': 3,
+	 					'jul': 2,
+	 					'aug': -1,
+	 					'sep': 0,
+	 					'nov': 3,
+	 					'dec': 1,
+	 					'oct': 3
+ 					},
+ 					'2017': {
+ 						'jan': 1,
+	 					'feb': 3,
+	 					'mar': 2,
+	 					'apr': 5,
+	 					'may': 4,
+	 					'jun': 3,
+	 					'jul': 2,
+	 					'aug': -1,
+	 					'sep': 0,
+	 					'nov': 3,
+	 					'dec': 1,
+	 					'oct': 3
+ 					},
+ 					'2018': {
+ 						'jan': 1,
+	 					'feb': 3,
+	 					'mar': 2,
+	 					'apr': 5,
+	 					'may': 4,
+	 					'jun': 3,
+	 					'jul': 2,
+	 					'aug': -1,
+	 					'sep': 0,
+	 					'nov': 3,
+	 					'dec': 1,
+	 					'oct': 3
+ 					},
+ 					'2019': {
+ 						'jan': 1,
+	 					'feb': 3,
+	 					'mar': 2,
+	 					'apr': 5,
+	 					'may': 4,
+	 					'jun': 3,
+	 					'jul': 2,
+	 					'aug': -1
+ 					}
+ 				},
  			}
  	}
 
@@ -865,9 +677,9 @@ am4core.ready(function() {
  		},
  		'visible': ['2016'],
  		'data': {
- 				'safety-and-security': {
+ 				'level-of-clearance-of-mines': {
  					'prop': {
- 						'name': 'Safety and Security',
+ 						'name': ' Level of clearance of mines and unexploded ordnance',
  						'color': '#327644',
  						'icon': 'pictures/powers-icon.png'
  					},
@@ -925,9 +737,9 @@ am4core.ready(function() {
  					}
  					
  				},
- 				'adequate-standard-of-living': {
+ 				'no-movement-restrictions': {
  					'prop': {
- 						'name': 'Adequate Standard of Living',
+ 						'name': 'No movement restrictions for IDPs',
  						'color': '#709608',
  						'icon': 'pictures/corruption-icon.png'
  					},
@@ -984,9 +796,9 @@ am4core.ready(function() {
 	 					'aug': -1
  					}
  				},
- 				'access-to-livelihoods': {
+ 				'reduction-of-checkpoints': {
  					'prop': {
- 						'name': 'Access To Livelihoods',
+ 						'name': 'Reduction of checkpoints or other special security measures',
  						'color': '#00997F',
  						'icon': 'pictures/open-icon.png'
  					},
@@ -1048,6 +860,215 @@ am4core.ready(function() {
 
 
 
+ 	function chartRender() {
+		var chart = am4core.create("chartdiv1", am4charts.XYChart);
+
+		var dataset = [{
+			  "year": "1994",
+			  "cars": 1587,
+			  "motorcycles": 650,
+			  "bicycles": 121
+			}, {
+			  "year": "1995",
+			  "cars": 1567,
+			  "motorcycles": 683,
+			  "bicycles": 146
+			}, {
+			  "year": "1996",
+			  "cars": 1617,
+			  "motorcycles": 691,
+			  "bicycles": 138
+			}, {
+			  "year": "1997",
+			  "cars": 1630,
+			  "motorcycles": 642,
+			  "bicycles": 127
+			}, {
+			  "year": "1998",
+			  "cars": 1660,
+			  "motorcycles": 699,
+			  "bicycles": 105
+			}, {
+			  "year": "1999",
+			  "cars": 1683,
+			  "motorcycles": 721,
+			  "bicycles": 109
+			}, {
+			  "year": "2000",
+			  "cars": 1691,
+			  "motorcycles": 737,
+			  "bicycles": 112
+			}, {
+			  "year": "2001",
+			  "cars": 1298,
+			  "motorcycles": 680,
+			  "bicycles": 101
+			}, {
+			  "year": "2002",
+			  "cars": 1275,
+			  "motorcycles": 664,
+			  "bicycles": 97
+			}, {
+			  "year": "2003",
+			  "cars": 1246,
+			  "motorcycles": 648,
+			  "bicycles": 93
+			}, {
+			  "year": "2004",
+			  "cars": 1318,
+			  "motorcycles": 697,
+			  "bicycles": 111
+			}, {
+			  "year": "2005",
+			  "cars": 1213,
+			  "motorcycles": 633,
+			  "bicycles": 87
+			}, {
+			  "year": "2006",
+			  "cars": 1199,
+			  "motorcycles": 621,
+			  "bicycles": 79
+			}, {
+			  "year": "2007",
+			  "cars": 1110,
+			  "motorcycles": 210,
+			  "bicycles": 81
+			}, {
+			  "year": "2008",
+			  "cars": 1165,
+			  "motorcycles": 232,
+			  "bicycles": 75
+			}, {
+			  "year": "2009",
+			  "cars": 1145,
+			  "motorcycles": 219,
+			  "bicycles": 88
+			}, {
+			  "year": "2010",
+			  "cars": 1163,
+			  "motorcycles": 201,
+			  "bicycles": 82
+			}, {
+			  "year": "2011",
+			  "cars": 1180,
+			  "motorcycles": 285,
+			  "bicycles": 87
+			}, {
+			  "year": "2012",
+			  "cars": 1159,
+			  "motorcycles": 277,
+			  "bicycles": 71
+			}];
+
+		chart.data = dataset
+
+
+
+
+
+
+
+
+		chart.dateFormatter.inputDateFormat = "yyyy";
+		var dateAxis = chart.xAxes.push(new am4charts.DateAxis());
+		dateAxis.renderer.minGridDistance = 60;
+		dateAxis.startLocation = 0.5;
+		dateAxis.endLocation = 0.5;
+		dateAxis.baseInterval = {
+			timeUnit: "year",
+			count: 1
+		}
+
+		chart.zoomOutButton.background.fill = am4core.color('#d6787c')
+
+
+		var valueAxis = chart.yAxes.push(new am4charts.ValueAxis());
+		valueAxis.tooltip.disabled = true;
+
+		var series = chart.series.push(new am4charts.LineSeries());
+		series.dataFields.dateX = "year";
+		series.name = "Level of clearance of mines and unexploded ordnance";
+		series.dataFields.valueY = "cars";
+		// series.tooltipHTML = "<img src='https://www.amcharts.com/lib/3/images/car.png' style='vertical-align:bottom; margin-right: 10px; width:28px; height:21px;'><span style='font-size:14px; color:#000000;'><b>{valueY.value}</b></span>";
+		series.tooltipText = "[#000]{valueY.value}[/]";
+		series.tooltip.background.fill = am4core.color("#FFF");
+		series.tooltip.getStrokeFromObject = true;
+		series.tooltip.background.strokeWidth = 3;
+		series.tooltip.getFillFromObject = false;
+		series.fill = am4core.color('#6F0000')
+		series.fillOpacity = 0.6;
+		series.stroke = am4core.color('white')
+		series.strokeWidth = 2;
+		series.stacked = true;
+
+		var series2 = chart.series.push(new am4charts.LineSeries());
+		series2.name = "No movement restrictions for IDPs";
+		series2.dataFields.dateX = "year";
+		series2.dataFields.valueY = "motorcycles";
+		// series2.tooltipHTML = "<img src='https://www.amcharts.com/lib/3/images/motorcycle.png' style='vertical-align:bottom; margin-right: 10px; width:28px; height:21px;'><span style='font-size:14px; color:#000000;'><b>{valueY.value}</b></span>";
+		series2.tooltipText = "[#000]{valueY.value}[/]";
+		series2.tooltip.background.fill = am4core.color("#FFF");
+		series2.tooltip.getFillFromObject = false;
+		series2.tooltip.getStrokeFromObject = true;
+		series2.tooltip.background.strokeWidth = 3;
+		series2.sequencedInterpolation = true;
+		series2.fill = am4core.color('#AA0000')
+		series2.fillOpacity = 0.6;
+		series2.stroke = am4core.color('white')
+		series2.stacked = true;
+		series2.strokeWidth = 2;
+
+		var series3 = chart.series.push(new am4charts.LineSeries());
+		series3.name = "Reduction of checkpoints or other special security measures";
+		series3.dataFields.dateX = "year";
+		series3.dataFields.valueY = "bicycles";
+		// series3.tooltipHTML = "<img src='https://www.amcharts.com/lib/3/images/bicycle.png' style='vertical-align:bottom; margin-right: 10px; width:28px; height:21px;'><span style='font-size:14px; color:#000000;'><b>{valueY.value}</b></span>";
+		series3.tooltipText = "[#000]{valueY.value}[/]";
+		series3.tooltip.background.fill = am4core.color("#FFF");
+		series3.tooltip.getFillFromObject = false;
+		series3.tooltip.getStrokeFromObject = true;
+		series3.tooltip.background.strokeWidth = 3;
+		series3.sequencedInterpolation = true;
+		series3.fill = am4core.color('#FF0000')
+		series3.fillOpacity = 0.6;
+		series3.stroke = am4core.color('white')
+		series3.defaultState.transitionDuration = 1000;
+		series3.stacked = true;
+		series3.strokeWidth = 2;
+
+		chart.cursor = new am4charts.XYCursor();
+		chart.cursor.xAxis = dateAxis;
+		chart.scrollbarX = new am4core.Scrollbar();
+
+			// Add a legend
+		chart.legend = new am4charts.Legend();
+
+		if (window.innerWidth < 600) {
+			chart.legend.position = "top";
+		} else {
+			chart.legend.position = "left";
+		}
+
+		// console.log(chart.legend)
+
+		chart.legend.maxWidth = 600;
+
+		chart.legend.itemContainers.template.events.on("hit", function(event) {
+			 console.log(event.target.dataItem.name);
+			});
+
+
+		// chart.events.on('ready', () => {
+		// 	console.log(chart.legend.dataItems.values[0])
+
+		// 	chart.legend.dataItems.values[0].events.on('hit', () => {
+		// 		console.log('sklghsdjkghsldj')
+		// 	})
+		// })
+
+
+		return chart
+	}
 
 
 
@@ -1310,6 +1331,8 @@ am4core.ready(function() {
 				document.getElementsByTagName('body')[0].style.overflow = 'hidden'
 
 
+				chartRender()
+
 			})
 		})
 
@@ -1409,3 +1432,10 @@ am4core.ready(function() {
 	}
 
 });
+
+
+
+
+
+
+
