@@ -82,8 +82,7 @@ am4core.ready(function() {
 	var chart = document.getElementsByClassName('chart-container')[0]
 	var tableContainer = document.getElementsByClassName('table-container')[0];
 	var table = document.getElementsByClassName('table-medium')[0];
-
-	var tableTmp = table
+	var range = document.getElementsByClassName('range')[0]
 
 
 	collapse.addEventListener('click', () => {
@@ -92,6 +91,7 @@ am4core.ready(function() {
 		collapse.classList.toggle('collapse-rotate')
 		tableContainer.classList.toggle('table-collapsed')
 		table.classList.toggle('table-collapsed')
+		range.classList.toggle('hide')
 	})
 
 
@@ -651,15 +651,25 @@ am4core.ready(function() {
 
 
 
-
-
-
-
-
-
-
-
-
+ 	var legalDevs = {
+ 		'data': [
+ 			{
+ 				'name': 'Cabinet provides limited financial Remedies for Housing damaged or destroyed during the conflict'
+ 			},
+ 			{
+ 				'name': 'Cabinet approves state budget funds allocation to local council for IDP housing'
+ 			},
+ 			{
+ 				'name': 'Cabinet modified Rules on movement of persons and goods through the contact line'
+ 			},
+ 			{
+ 				'name': 'Increase in living wage and minimal pension become effective from 1 July 2019'
+ 			},
+ 			{
+ 				'name': 'Increase in living wage and minimal pension become effective from 1 July 2019'
+ 			}
+ 		]
+ 	}
 
 
 
@@ -854,7 +864,66 @@ am4core.ready(function() {
 	 					'jul': 2,
 	 					'aug': -1
  					}
- 				}
+ 				},
+ 				'smth': {
+ 					'prop': {
+ 						'name': 'Tmth',
+ 						'color': '#709608',
+ 						'icon': 'pictures/corruption-icon.png'
+ 					},
+ 					'2016': {
+ 						'jan': 1,
+	 					'feb': 3,
+	 					'mar': 2,
+	 					'apr': 5,
+	 					'may': 4,
+	 					'jun': 3,
+	 					'jul': 2,
+	 					'aug': -1,
+	 					'sep': 0,
+	 					'nov': 3,
+	 					'dec': 1,
+	 					'oct': 3
+ 					},
+ 					'2017': {
+ 						'jan': 1,
+	 					'feb': 3,
+	 					'mar': 2,
+	 					'apr': 5,
+	 					'may': 4,
+	 					'jun': 3,
+	 					'jul': 2,
+	 					'aug': -1,
+	 					'sep': 0,
+	 					'nov': 3,
+	 					'dec': 1,
+	 					'oct': 3
+ 					},
+ 					'2018': {
+ 						'jan': 1,
+	 					'feb': 3,
+	 					'mar': 2,
+	 					'apr': 5,
+	 					'may': 4,
+	 					'jun': 3,
+	 					'jul': 2,
+	 					'aug': -1,
+	 					'sep': 0,
+	 					'nov': 3,
+	 					'dec': 1,
+	 					'oct': 3
+ 					},
+ 					'2019': {
+ 						'jan': 1,
+	 					'feb': 3,
+	 					'mar': 2,
+	 					'apr': 5,
+	 					'may': 4,
+	 					'jun': 3,
+	 					'jul': 2,
+	 					'aug': -1
+ 					}
+ 				},
  			}
  	}
 
@@ -966,6 +1035,7 @@ am4core.ready(function() {
 
 
 
+		am4core.options.autoSetClassName = true;
 
 
 
@@ -1000,6 +1070,9 @@ am4core.ready(function() {
 		series.stroke = am4core.color('white')
 		series.strokeWidth = 2;
 		series.stacked = true;
+		series.dummyData = {
+		  flag: "pictures/powers-icon.png"
+		};
 
 		var series2 = chart.series.push(new am4charts.LineSeries());
 		series2.name = "No movement restrictions for IDPs";
@@ -1017,6 +1090,9 @@ am4core.ready(function() {
 		series2.stroke = am4core.color('white')
 		series2.stacked = true;
 		series2.strokeWidth = 2;
+		series2.dummyData = {
+		  flag: "pictures/corruption-icon.png"
+		};
 
 		var series3 = chart.series.push(new am4charts.LineSeries());
 		series3.name = "Reduction of checkpoints or other special security measures";
@@ -1036,35 +1112,77 @@ am4core.ready(function() {
 		series3.stacked = true;
 		series3.strokeWidth = 2;
 
+
+		series3.dummyData = {
+		  flag: "pictures/open-icon.png"
+		};
+
 		chart.cursor = new am4charts.XYCursor();
 		chart.cursor.xAxis = dateAxis;
 		chart.scrollbarX = new am4core.Scrollbar();
 
 			// Add a legend
+		// chart.legend = new am4charts.Legend();
+
+		// if (window.innerWidth < 600) {
+		// 	chart.legend.position = "top";
+		// } else {
+		// 	chart.legend.position = "left";
+		// }
+
+
+		// chart.legend.maxWidth = 600;
+
+
 		chart.legend = new am4charts.Legend();
-
-		if (window.innerWidth < 600) {
-			chart.legend.position = "top";
-		} else {
-			chart.legend.position = "left";
-		}
-
-		// console.log(chart.legend)
-
-		chart.legend.maxWidth = 600;
+		chart.legend.useDefaultMarker = true;
+		chart.legend.labels.template.truncate = true;
+		// chart.legend.labels.template.wrap = true;
+		chart.legend.minWidth = 350;
 
 		chart.legend.itemContainers.template.events.on("hit", function(event) {
-			 console.log(event.target.dataItem.name);
-			});
+			console.log(event.target.dataItem.name);
+			console.log(event.target.classList)
+		});
 
+		console.log(chart.legend)
+		// chart.legend.minWidth = 600;
 
-		// chart.events.on('ready', () => {
-		// 	console.log(chart.legend.dataItems.values[0])
+		// if (window.innerWidth < 600) {
+		// 	chart.legend.position = "top";
+		// } else {
+		// 	chart.legend.position = "left";
+		// }
 
-		// 	chart.legend.dataItems.values[0].events.on('hit', () => {
-		// 		console.log('sklghsdjkghsldj')
-		// 	})
-		// })
+		// chart.legend.position = 'absolute'
+
+		// console.log(chart.legend.position)
+
+		/* Remove square from marker template */
+		var marker = chart.legend.markers.template;
+		marker.disposeChildren();
+		marker.width = 40;
+		marker.height = 40;
+
+		/* Add custom image instead */
+		var flag = marker.createChild(am4core.Image);
+		flag.width = 40;
+		flag.height = 40;
+		flag.verticalCenter = "top";
+		flag.horizontalCenter = "left";
+		flag.adapter.add("href", function(href, target) {
+		  if (target.dataItem && target.dataItem.dataContext && target.dataItem.dataContext.dummyData) {
+		    return target.dataItem.dataContext.dummyData.flag;
+		  }
+		  else {
+		    return href;
+		  }
+		});
+
+		var height = window.innerHeight - 156 - document.getElementById('table-modal').clientHeight
+
+		document.getElementsByClassName('modal-chart-container')[0].style.top = document.getElementById('table-modal').clientHeight + 40 + 'px'
+		document.getElementById('chartdiv1').style.height = height + 'px'
 
 
 		return chart
@@ -1295,6 +1413,22 @@ am4core.ready(function() {
 				}
 			})
 
+			if (item.classList.length == 3) {
+				item.addEventListener('click', () => {
+					// while(document.getElementById('legal-container').firstChild) {
+					// 	document.getElementById('legal-container').remove(document.getElementById('legal-container').firstChild)
+					// }
+
+					while (document.getElementById('legal-container').firstChild) {
+						document.getElementById('legal-container').removeChild(document.getElementById('legal-container').firstChild)
+					}
+
+					legalDevs['data'].forEach((leg) => {
+						document.getElementById('legal-container').insertAdjacentHTML('beforeEnd', '<li>' + leg['name'] + '</li>')
+					})
+				})
+			}
+
 			// if (item.classList.length == 2) {
 			// 	item.addEventListener('click', (ev) => {
 			// 		modal.style.display = 'block'
@@ -1356,22 +1490,25 @@ am4core.ready(function() {
 	// table expand 
 
 	var buttonExpand = document.getElementsByClassName('table-expand')[0]
+	var legals = document.getElementsByClassName('legal-devs')[0]
 
 	buttonExpand.addEventListener('click', () => {
 		var cells = document.getElementsByClassName('table-medium-cell')
 		var categories = document.getElementsByClassName('category')
 
+		legals.classList.toggle('hide')
+
 		if (buttonExpand.classList.contains('table-expanded')) {
 			data['visible'] = ['2016']
 			loadTableData(data, true, 'table-medium')
 
-			cells.forEach((cell) => {
-				cell.style.width = '6%'
-			})
+			// cells.forEach((cell) => {
+			// 	cell.style.width = '5%'
+			// })
 
-			categories.forEach((category) => {
-				category.style.width = '28%'
-			})
+			// categories.forEach((category) => {
+			// 	category.style.width = '40%'
+			// })
 
 			table.style.width = '70%'
 
