@@ -1,5 +1,6 @@
 .search-container{
   width: 200px;
+  /*width: 20px;*/
   vertical-align: middle;
   white-space: nowrap;
   position: absolute;
@@ -10,21 +11,24 @@
   padding: 10px;
 
 
-  -webkit-transition: background .55s ease;
-  -moz-transition: background .55s ease;
-  -ms-transition: background .55s ease;
-  -o-transition: background .55s ease;
-  transition: background .55s ease;
+  -webkit-transition: all .3s ease;
+  -moz-transition: all .3s ease;
+  -ms-transition: all .3s ease;
+  -o-transition: all .3s ease;
+  transition: all .3s ease;
+  cursor: pointer;
 }
 
 .search-container input#search{
   width: 200px;
+  /*width: 0;*/
   height: 20px;
   background: white;
   border: none;
   font-size: 10pt;
   float: left;
   color: #63717f;
+  /*padding-left: 20px;*/
   padding-left: 35px;
 
 
@@ -33,11 +37,11 @@
   border-radius: 5px;
 
 
-  -webkit-transition: background .55s ease;
-  -moz-transition: background .55s ease;
-  -ms-transition: background .55s ease;
-  -o-transition: background .55s ease;
-  transition: background .55s ease;
+  -webkit-transition: all .3s ease;
+  -moz-transition: all .3s ease;
+  -ms-transition: all .3s ease;
+  -o-transition: all .3s ease;
+  transition: all .3s ease;
 }
 
 .search-container input#search::-webkit-input-placeholder {
@@ -60,7 +64,7 @@
   position: absolute;
   top: 50%;
   margin-top: -8px;
-  margin-left: 8px;
+  margin-left: 3px;
   z-index: 1;
   color: #4f5b66;
 }
@@ -71,17 +75,31 @@
 }
 
 
+.search-container-expand {
+  width: 200px !important;
+}
+
+.search-input-expand {
+  width: 200px !important;
+  padding-left: 35px !important;
+}
+
+
 @media screen and (max-width: 870px) {
   .search-container {
-    right: 5px;
+    right: 16.5px;
   }
 }
 
 
 @media screen and (max-width: 799px) {
-  .search-container {
-    right: 5px;
-    width: 10px;
+  .search-container{
+    width: 20px;
+  }
+
+  .search-container input#search{
+    width: 0;
+    padding-left: 20px;
   }
 }
 
