@@ -1440,6 +1440,10 @@ am4core.ready(function() {
 						document.getElementById('legal-container').insertAdjacentHTML('beforeEnd', '<li>' + leg['name'] + '</li>')
 					})
 
+					document.getElementById('legal-current').innerText = category.innerText + ': ' + month.classList[1].split('table-medium-')[1]
+
+					console.log()
+
 					document.getElementsByClassName('cell-active').forEach((cell, index) => {
 						document.getElementsByClassName('cell-active')[index].classList.remove('cell-active')
 					})
@@ -1657,6 +1661,7 @@ am4core.ready(function() {
 	}
 
 });
+
 
 
 
