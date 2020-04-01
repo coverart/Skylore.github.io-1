@@ -1,6 +1,8 @@
 
 
 am4core.ready(function() {
+
+
 	//      Main Chart
 
 
@@ -60,6 +62,9 @@ am4core.ready(function() {
 	chart1.scrollbarX = scroll;
 
 
+	chart1.logo.height = -15;
+
+
 
 
 
@@ -77,22 +82,24 @@ am4core.ready(function() {
 
 
 
-	var collapse = document.getElementsByClassName('collapse')[0];
+	// var collapse = document.getElementsByClassName('collapse')[0];
 	var mainChartContainer = document.getElementsByClassName('chart-container-bg')[0];
 	var chart = document.getElementsByClassName('chart-container')[0]
 	var tableContainer = document.getElementsByClassName('table-container')[0];
 	var table = document.getElementsByClassName('table-medium')[0];
 	var range = document.getElementsByClassName('range')[0]
+	var details = document.getElementsByClassName('details')[0]
 
 
-	collapse.addEventListener('click', () => {
-		mainChartContainer.classList.toggle('collapse-container')
-		chart.classList.toggle('collapse-container')
-		collapse.classList.toggle('collapse-rotate')
-		tableContainer.classList.toggle('table-collapsed')
-		table.classList.toggle('table-collapsed')
-		range.classList.toggle('hide')
-	})
+	// collapse.addEventListener('click', () => {
+	// 	mainChartContainer.classList.toggle('collapse-container')
+	// 	chart.classList.toggle('collapse-container')
+	// 	collapse.classList.toggle('collapse-rotate')
+	// 	tableContainer.classList.toggle('table-collapsed')
+	// 	table.classList.toggle('table-collapsed')
+	// 	range.classList.toggle('hide')
+	// 	details.classList.toggle('hide')
+	// })
 
 
 
@@ -1145,6 +1152,8 @@ am4core.ready(function() {
 			console.log(event.target.classList)
 		});
 
+		chart.logo.height = -15;
+
 		console.log(chart.legend)
 		// chart.legend.minWidth = 600;
 
@@ -1178,6 +1187,8 @@ am4core.ready(function() {
 		    return href;
 		  }
 		});
+
+
 
 		var height = window.innerHeight - 156 - document.getElementById('table-modal').clientHeight
 
@@ -1345,6 +1356,11 @@ am4core.ready(function() {
 
 
 
+ 	function clearLegalArea() {
+		while (document.getElementById('legal-container').firstChild) {
+			document.getElementById('legal-container').removeChild(document.getElementById('legal-container').firstChild)
+		}
+	}
 
 
 	// table hover / click effect
@@ -1353,13 +1369,13 @@ am4core.ready(function() {
 
 		var tds = document.getElementsByClassName(id + '-cell');
 
-		tds.forEach((item) => {
+		tds.forEach((item, i) => {
 			var category = null
 			var month = null
 			var year = null
 
 			item.addEventListener('mouseover', () => {
-				if (item.classList.length == 3) {
+				if (item.classList.length == 3 || item.classList.length == 4) {
 
 					var yearselector = item.classList[1].split('-')[3]
 
@@ -1378,14 +1394,16 @@ am4core.ready(function() {
 				}
 
 				if (category != null && month != null) {
-					category.style.backgroundColor = '#af161e';
-					category.prevColor = category.style.color
+					category.style.backgroundColor = '#788A97';
+					category.prevColor = category.children[0].children[1].style.color
 					category.style.color = 'white'
-					category.style.opacity = '0.5'
+					// category.style.opacity = '0.5'
 
-					month.style.backgroundColor = '#af161e';
+					category.children[0].children[1].style.color = 'white'
+
+					month.style.backgroundColor = '#788A97';
 					month.style.color = 'white'
-					month.style.opacity = '0.5'
+					// month.style.opacity = '0.5'
 
 					item.style.backgroundColor = '#cac5d9'
 				}
@@ -1398,7 +1416,7 @@ am4core.ready(function() {
 			item.addEventListener('mouseout', () => {
 				if (category != null && month != null) {
 					category.style.backgroundColor = 'white';
-					category.style.color = category.prevColor
+					category.children[0].children[1].style.color = category.prevColor
 					category.style.opacity = '1'
 
 					month.style.backgroundColor = 'white';
@@ -1413,19 +1431,42 @@ am4core.ready(function() {
 				}
 			})
 
-			if (item.classList.length == 3) {
-				item.addEventListener('click', () => {
-					// while(document.getElementById('legal-container').firstChild) {
-					// 	document.getElementById('legal-container').remove(document.getElementById('legal-container').firstChild)
-					// }
+			if (item.classList.length >= 3) {
+				item.addEventListener('click', (ev) => {
 
-					while (document.getElementById('legal-container').firstChild) {
-						document.getElementById('legal-container').removeChild(document.getElementById('legal-container').firstChild)
-					}
-
+					clearLegalArea()
+					
 					legalDevs['data'].forEach((leg) => {
 						document.getElementById('legal-container').insertAdjacentHTML('beforeEnd', '<li>' + leg['name'] + '</li>')
 					})
+
+					document.getElementsByClassName('cell-active').forEach((cell, index) => {
+						document.getElementsByClassName('cell-active')[index].classList.remove('cell-active')
+					})
+
+					if (!item.classList.contains('cell-active')) {
+						tds[i].classList.add('cell-active')
+					}
+
+					if (document.getElementsByClassName('table-expand')[0].classList.contains('table-expanded')) {
+						document.getElementsByClassName('table-expand')[0].click()
+						// console.log(year.innerHTML)
+
+						var evClass = ev.target.classList
+
+
+						data['visible'] = [year.innerHTML]
+						loadTableData(data, true, 'table-medium')
+
+						var scategories = document.getElementsByClassName(evClass[1])
+
+						for (i in scategories) {
+							if (scategories[i] instanceof HTMLTableCellElement && scategories[i].classList.contains(evClass[2])) {
+								scategories[i].classList.add('cell-active')
+							}
+						}
+
+					}
 				})
 			}
 
@@ -1454,15 +1495,19 @@ am4core.ready(function() {
 
 			item.addEventListener('click', (ev) => {
 
+				document.getElementsByClassName('search-box')[0].style.display = 'none'
 				document.getElementsByClassName('category-name')[0].innerText = ev.target.innerText
 				modal.style.display = 'block'
 				loadTableData(modalData, true, 'table-modal');
+
+				mainChartContainer.style.display = 'none'
+				tableContainer.style.display = 'none'
 
 				x = window.pageXOffset
 				y = window.pageYOffset
 
 				window.scrollTo(0, 0)
-				document.getElementsByTagName('body')[0].style.overflow = 'hidden'
+				// document.getElementsByTagName('body')[0].style.overflow = 'hidden'
 
 
 				chartRender()
@@ -1475,10 +1520,14 @@ am4core.ready(function() {
 
 			modalExit.addEventListener('click', () => {
 				modal.style.display = 'none'
+				document.getElementsByClassName('search-box')[0].style.display = 'block'
 				document.getElementsByClassName('category-name')[0].innerText = null
 
+				mainChartContainer.style.display = 'block'
+				tableContainer.style.display = 'block'
+
 				window.scrollTo(x, y)
-				document.getElementsByTagName('body')[0].style.overflow = 'visible'
+
 		})
 
 	}
@@ -1498,17 +1547,13 @@ am4core.ready(function() {
 
 		legals.classList.toggle('hide')
 
+		// legals.classList.toggle('legal-devs-modal')
+
+
+
 		if (buttonExpand.classList.contains('table-expanded')) {
 			data['visible'] = ['2016']
 			loadTableData(data, true, 'table-medium')
-
-			// cells.forEach((cell) => {
-			// 	cell.style.width = '5%'
-			// })
-
-			// categories.forEach((category) => {
-			// 	category.style.width = '40%'
-			// })
 
 			table.style.width = '70%'
 
@@ -1533,6 +1578,9 @@ am4core.ready(function() {
 			buttonExpand.style.right = '1px'
 			buttonExpand.style.transform = 'rotate(180deg)'
 			buttonExpand.classList.add('table-expanded')
+
+
+			clearLegalArea()
 		}
 	}) 
 
@@ -1562,14 +1610,53 @@ am4core.ready(function() {
 		    }
 		});
 
-		// console.log(mobileSelect)
+		console.log(mobileSelect)
+
+		mobileSelect.trigger.value = data['visible'][0]
 
 		mobileSelect.ensureBtn.innerHTML = 'select'
 		mobileSelect.cancelBtn.innerHTML = 'cancel'
 	}
 
-});
 
+
+
+
+
+
+
+	//  logo click
+	document.getElementById('logo').addEventListener('click', () => {
+		window.location = 'https://drc.ngo/'
+	})
+
+
+
+	// search
+
+
+	var search = document.getElementById('search')
+	var searchArea = document.getElementsByClassName('search-area')[0]
+	var searchQuery = document.getElementsByClassName('search-query')[0]
+
+	search.oninput = function () {
+		var sval = search.value
+
+		if (sval != "") {
+			mainChartContainer.style.display = 'none'
+			tableContainer.style.display = 'none'
+
+			searchArea.style.display = 'block'
+			searchQuery.innerText = 'Search by: ' + sval
+		} else {
+			mainChartContainer.style.display = 'block'
+			tableContainer.style.display = 'block'
+
+			searchArea.style.display = 'none'
+		}
+	}
+
+});
 
 
 
