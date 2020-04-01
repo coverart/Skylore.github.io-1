@@ -1585,6 +1585,7 @@ am4core.ready(function() {
 
 
 			clearLegalArea()
+			document.getElementById('legal-current').innerText = ''
 		}
 	}) 
 
