@@ -122,6 +122,11 @@
 	right: 0;
 }
 
+#legal-current {
+	text-align: center;
+	margin-top: 5px;
+}
+
 /*.legal-devs-modal {
 	position: fixed !important;
 	width: 300px!important;
