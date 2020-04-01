@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>Document</title>
+	<title>Legislative Index Framework</title>
 
 	<script src="https://kit.fontawesome.com/91b0d914ad.js" crossorigin="anonymous"></script>
 
@@ -12,6 +12,7 @@
 	<script src="https://www.amcharts.com/lib/4/themes/animated.js"></script>
 
 	<script src="js/index.js"></script>
+	<script src="js/search.js"></script>
 
 	<script src="js/mobileSelect.js"></script>
 	<link rel="stylesheet" href="css/mobileSelect.css">
@@ -19,15 +20,29 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 
 	<link rel="stylesheet" href="css/style.css">
+	<link rel="stylesheet" href="css/search.css">
 </head>
 <body>
 
 
 
 	<div class="header">
-		<img src="pictures/drc-2020-en-red.png" alt="">
+		<img src="pictures/drc-2020-en-red.png" alt="" id="logo">
 		<h2 class="slogan">Legislative Index Framework</h2>
 		<h2 class="category-name"></h2>
+		
+		<div class="search-box">
+		  <div class="search-container">
+		      <span class="icon"><i class="fa fa-search"></i></span>
+		      <input type="search" id="search" placeholder="Search..." autocomplete="off" />
+		  </div>
+		</div>
+
+	</div>
+
+
+	<div class="search-area">
+		<p class="search-query"></p>
 	</div>
 
 
@@ -38,9 +53,14 @@
 			<div id="chartdiv"></div>
 		</div>
 		<p class="range">-2,5=weak to 2,5=strong</p>
-		<i class="fas fa-angle-up collapse"></i>
+		<div class="details">
+			<i class="fas fa-info-circle"></i>
+			<span>details</span>
+		</div>
+		<!-- <i class="fas fa-angle-up collapse"></i> -->
 	</div>
 
+	<div class="modal-legal-dev"></div>
 
 
 	<div class="modal">
