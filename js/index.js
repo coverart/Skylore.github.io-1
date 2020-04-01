@@ -13,7 +13,6 @@ am4core.ready(function() {
 	var chart1 = am4core.create("chartdiv", am4charts.XYChart);
 
 
-
 	var data1 = [];
 	var value = 50;
 	for(var i = 0; i < 300; i++){
@@ -1660,6 +1659,18 @@ am4core.ready(function() {
 			searchArea.style.display = 'none'
 		}
 	}
+
+	var searchContainer = document.getElementsByClassName('search-container')[0]
+	var searchInput = document.getElementById('search')
+
+	document.getElementsByClassName('icon')[0].addEventListener('click', () => {
+		if (window.innerWidth <= 799) {
+			// console.log('clicked')
+			document.getElementsByClassName('slogan')[0].classList.toggle('hide')
+			searchContainer.classList.toggle('search-container-expand')
+			searchInput.classList.toggle('search-input-expand')
+		}
+	})
 
 });
 
